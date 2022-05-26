@@ -11,7 +11,7 @@ function App() {
   const { data, loading } = useFetch()
   const [page, setPage] = useState(0)
   const [people, setPeople] = useState([])
-  const [personId, setPersonId] = useState(null)
+  const [setPersonId] = useState(null)
 
   useEffect(() => {
     if (loading) return

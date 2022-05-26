@@ -1,18 +1,33 @@
-// hooks
+import { useState, useEffect } from 'react'
+// custom hooks
 import useFetch from './hooks/useFetch'
 // components
 import Table from './component/Table'
 
 function App() {
   const { data, loading } = useFetch()
-  // DEBUG
-  // console.log(loading, 'LOADING')
-  // console.log(data, 'DATA')
+  const [page, setPage] = useState(0)
+  const [people, setPeople] = useState([])
+
+  useEffect(() => {
+    if (loading) return
+    setPeople(data[page])
+  }, [loading, page])
+
+  const handlePageChange = indexNumber => {
+    console.log(indexNumber)
+    return setPage(indexNumber)
+  }
 
   return (
     <div>
       <h1>Tappit Table Challenge</h1>
-      <Table data={data} />
+      <Table
+        data={people}
+        pageNumber={page}
+        pageData={data}
+        onChange={handlePageChange}
+      />
     </div>
   )
 }

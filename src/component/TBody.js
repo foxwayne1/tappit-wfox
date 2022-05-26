@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TBody = ({ data }) => {
-  console.log(data)
+  // console.log(data)
   return (
     <tbody>
       {data.map(item => (

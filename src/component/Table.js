@@ -1,4 +1,5 @@
 import React from 'react'
+import Pagination from './Pagination'
 import TBody from './TBody'
 import THead from './THead'
 
@@ -11,6 +12,7 @@ const Table = ({ data }) => {
             <table className='min-w-full'>
               <THead />
               <TBody data={data} />
+              <Pagination />
             </table>
           </div>
         </div>

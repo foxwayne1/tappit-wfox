@@ -8,7 +8,7 @@ import UpdatePersonDetails from './component/UpdatePersonDetails'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
-  const { allData, data, loading } = useFetch()
+  const { data, loading } = useFetch()
   const [page, setPage] = useState(0)
   const [people, setPeople] = useState([])
   const [personId, setPersonId] = useState(null)
@@ -40,12 +40,7 @@ function App() {
             />
           }
         />
-        <Route
-          path='/person/:id'
-          element={
-            // <UpdatePersonDetails params={allData[personId]} allData={allData} />
-          }
-        />
+        <Route path='/person/:id' element={<UpdatePersonDetails />} />
       </Routes>
     </BrowserRouter>
   )

@@ -36,13 +36,15 @@ function App() {
               pageNumber={page}
               pageData={data}
               onChange={handlePageChange}
-              id={handlePersonClick}
+              handlePersonClick={handlePersonClick}
             />
           }
         />
         <Route
           path='/person/:id'
-          element={<UpdatePersonDetails idClicked={allData[personId]} />}
+          element={
+            // <UpdatePersonDetails params={allData[personId]} allData={allData} />
+          }
         />
       </Routes>
     </BrowserRouter>

@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 
-const TBody = ({ data, id }) => {
+const TBody = ({ data, handlePersonClick }) => {
   let navigate = useNavigate()
-  console.log(navigate)
 
   const handleClick = id => {
-    console.log(id)
+    handlePersonClick(id)
     navigate(`./person/${id}`, { replace: true })
   }
 

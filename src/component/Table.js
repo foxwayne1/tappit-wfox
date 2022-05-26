@@ -10,6 +10,7 @@ const Table = ({
   onChange,
   nextButton,
   prevButton,
+  id,
 }) => {
   return (
     <>
@@ -20,7 +21,7 @@ const Table = ({
             <div className='overflow-hidden'>
               <table className='min-w-full'>
                 <THead />
-                <TBody data={data} />
+                <TBody data={data} id={id} />
                 <Pagination
                   pageNumber={pageNumber}
                   pageData={pageData}

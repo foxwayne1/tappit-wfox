@@ -1,11 +1,19 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const TBody = ({ data }) => {
-  // console.log(data)
+const TBody = ({ data, id }) => {
+  let navigate = useNavigate()
+  console.log(navigate)
+
+  const handleClick = id => {
+    console.log(id)
+    navigate(`./person/${id}`, { replace: true })
+  }
+
   return (
     <tbody>
       {data.map(item => (
         <tr
+          onClick={() => handleClick(item.personId)}
           key={item.personId}
           className='bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100'
         >

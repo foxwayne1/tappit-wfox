@@ -8,9 +8,10 @@ import UpdatePersonDetails from './component/UpdatePersonDetails'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
-  const { data, loading } = useFetch()
+  const { allData, data, loading } = useFetch()
   const [page, setPage] = useState(0)
   const [people, setPeople] = useState([])
+  const [personId, setPersonId] = useState(null)
 
   useEffect(() => {
     if (loading) return
@@ -18,19 +19,10 @@ function App() {
   }, [loading, page, data])
 
   const handlePageChange = indexNumber => {
-    console.log(indexNumber)
     return setPage(indexNumber)
   }
-
-  const prevButton = indexNumber => {
-    if (page < 0) {
-      return setPage(page.length - 1)
-    }
-  }
-  const nextButton = indexNumber => {
-    if (page > page.length) {
-      return setPage(0)
-    }
+  const handlePersonClick = id => {
+    setPersonId(id - 1)
   }
 
   return (
@@ -44,12 +36,14 @@ function App() {
               pageNumber={page}
               pageData={data}
               onChange={handlePageChange}
-              prevButton={prevButton}
-              nextButton={nextButton}
+              id={handlePersonClick}
             />
           }
         />
-        <Route path='/person/:id' element={<UpdatePersonDetails />} />
+        <Route
+          path='/person/:id'
+          element={<UpdatePersonDetails idClicked={allData[personId]} />}
+        />
       </Routes>
     </BrowserRouter>
   )

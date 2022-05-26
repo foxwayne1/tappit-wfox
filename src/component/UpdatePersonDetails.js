@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-const UpdatePersonDetails = () => {
-  //   const paramDetails = useParams()
-  //   console.log(paramDetails)
+const UpdatePersonDetails = ({ idClicked }) => {
+  console.log(idClicked)
+  const paramDetails = useParams()
+  console.log(paramDetails)
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -15,13 +16,19 @@ const UpdatePersonDetails = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    return setAllDetails({
+    setAllDetails({
+      personId: new Date(),
       firstName,
       lastName,
       isEnabled,
       isValid,
       isAuthorised,
     })
+    setFirstName('')
+    setLastName('')
+    setIsEnabled(!isEnabled)
+    setIsValid(!isValid)
+    setIsAuthorised(!isAuthorised)
   }
   console.log(allDetails)
 
@@ -76,6 +83,12 @@ const UpdatePersonDetails = () => {
         />
 
         <div className='flex items-center mb-4'>
+          <label
+            htmlFor='enabled'
+            className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+          >
+            Enabled
+          </label>
           <input
             id='enabled'
             type='checkbox'
@@ -83,15 +96,15 @@ const UpdatePersonDetails = () => {
             onChange={enableHandler}
             className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
           />
-          <label
-            htmlFor='enabled'
-            className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-          >
-            Enabled
-          </label>
         </div>
 
         <div className='flex items-center mb-4'>
+          <label
+            htmlFor='valid'
+            className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+          >
+            Valid
+          </label>
           <input
             id='valid'
             type='checkbox'
@@ -99,15 +112,15 @@ const UpdatePersonDetails = () => {
             className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
             onChange={validHandler}
           />
-          <label
-            htmlFor='valid'
-            className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-          >
-            Valid
-          </label>
         </div>
 
         <div className='flex items-center mb-4'>
+          <label
+            htmlFor='authorised'
+            className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+          >
+            authorised
+          </label>
           <input
             id='authorised'
             type='checkbox'
@@ -115,14 +128,39 @@ const UpdatePersonDetails = () => {
             className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
             onChange={authHandler}
           />
+        </div>
+        <div className='flex items-center mb-4'>
           <label
             htmlFor='authorised'
             className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300'
           >
-            authorised
+            Fav sport
           </label>
+          <input
+            id='authorised'
+            type='checkbox'
+            value='isAuthorised'
+            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+            onChange={authHandler}
+          />
+          <input
+            id='authorised'
+            type='checkbox'
+            value='isAuthorised'
+            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+            onChange={authHandler}
+          />
+          <input
+            id='authorised'
+            type='checkbox'
+            value='isAuthorised'
+            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+            onChange={authHandler}
+          />
         </div>
-        <button type='submit'>Done</button>
+        <button type='submit'>Cancel</button>
+        <button type='submit'>Clear</button>
+        <button type='submit'>Save</button>
       </form>
     </>
   )

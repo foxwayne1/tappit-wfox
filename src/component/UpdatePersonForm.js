@@ -1,11 +1,22 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const UpdatePersonForm = ({ person }) => {
+  let navigate = useNavigate()
+
   const [firstName, setFirstName] = useState(person.firstName)
   const [lastName, setLastName] = useState(person.lastName)
   const [isEnabled, setIsEnabled] = useState(person.isEnabled)
   const [isValid, setIsValid] = useState(person.isValid)
   const [isAuthorised, setIsAuthorised] = useState(person.isAuthorised)
+  const [isFavSport, setIsFavSport] = useState(person.favouriteSports)
+  const [listOfSports, setListOfSports] = useState([
+    { name: 'American Football' },
+    { name: 'Baseball' },
+    { name: 'Basketball' },
+  ])
+  const [football, setFootball] = useState(person.favouriteSports.name)
+  console.log(isFavSport)
 
   console.log(person)
   const handleSubmit = e => {
@@ -16,8 +27,13 @@ const UpdatePersonForm = ({ person }) => {
       isEnabled,
       isValid,
       isAuthorised,
+      //   favouriteSports: [{ [name]: football }],
     }
     console.log(newData)
+  }
+
+  const handleCancel = () => {
+    navigate('/', { replace: true })
   }
 
   return (
@@ -109,7 +125,19 @@ const UpdatePersonForm = ({ person }) => {
             />
           </div>
         </div>
-        <button>Submit</button>
+        <div>
+          <div className='flex items-center mb-4 mt-10'>
+            <label
+              htmlFor='favSport'
+              className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 mr-10'
+            >
+              Favourite Sport
+            </label>
+            {/* // favourite sports go here */}
+          </div>
+        </div>
+        <button onClick={handleCancel}>Cancel</button>
+        <button>Save</button>
       </form>
     </div>
   )

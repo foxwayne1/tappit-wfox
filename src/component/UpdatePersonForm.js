@@ -1,20 +1,37 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const UpdatePersonForm = ({person}) => {
-  console.log(person)
+const UpdatePersonForm = ({ person }) => {
+  // console.log(person)
   let navigate = useNavigate()
 
+  const [newPerson, setNewPerson] = useState(person)
   const [firstName, setFirstName] = useState(person.firstName)
   const [lastName, setLastName] = useState(person.lastName)
   const [isEnabled, setIsEnabled] = useState(person.isEnabled)
   const [isValid, setIsValid] = useState(person.isValid)
   const [isAuthorised, setIsAuthorised] = useState(person.isAuthorised)
-  
+  const [isPalindrome, setIsPalindrome] = useState(person.isPalindrome)
 
+  console.log(newPerson)
   const handleCancel = () => {
     navigate('/', { replace: true })
   }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const newDataObj = {
+      personId: Math.random() * 1000,
+      firstName,
+      lastName,
+      isEnabled,
+      isValid,
+      isAuthorised,
+      isPalindrome,
+    }
+    setNewPerson(newDataObj)
+  }
+
   return (
     <div className='container mx-auto mt-10'>
       <form onSubmit={e => handleSubmit(e)}>
@@ -107,24 +124,32 @@ const UpdatePersonForm = ({person}) => {
         <div>
           <div className='flex items-center mb-4 mt-10'>
             <label
-              htmlFor='authorised'
+              htmlFor='planidrome'
               className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 mr-10'
             >
               Palindrome
             </label>
             <input
-              checked={isAuthorised}
-              value={isAuthorised}
-              onChange={() => setIsAuthorised(!isAuthorised)}
-              id='authorised'
+              checked={isPalindrome}
+              value={isPalindrome}
+              onChange={() => setIsPalindrome(!isPalindrome)}
+              id='planidrome'
               type='checkbox'
               className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
             />
           </div>
         </div>
-        <button onClick={handleCancel}>Cancel</button>
-        <button>Save</button>
+        <button
+          className='text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800'
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
+        <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>
+          Save
+        </button>
       </form>
+    </div>
   )
 }
 

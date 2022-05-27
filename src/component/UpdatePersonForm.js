@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const UpdatePersonForm = ({ person }) => {
+const UpdatePersonForm = ({person}) => {
+  console.log(person)
   let navigate = useNavigate()
 
   const [firstName, setFirstName] = useState(person.firstName)
@@ -9,24 +10,11 @@ const UpdatePersonForm = ({ person }) => {
   const [isEnabled, setIsEnabled] = useState(person.isEnabled)
   const [isValid, setIsValid] = useState(person.isValid)
   const [isAuthorised, setIsAuthorised] = useState(person.isAuthorised)
-
-  const handleSubmit = e => {
-    e.preventDefault()
-    const newData = {
-      firstName,
-      lastName,
-      isEnabled,
-      isValid,
-      isAuthorised,
-      favouriteSports: { hello: 'wayne' },
-    }
-    console.log(newData, 'newData')
-  }
+  
 
   const handleCancel = () => {
     navigate('/', { replace: true })
   }
-
   return (
     <div className='container mx-auto mt-10'>
       <form onSubmit={e => handleSubmit(e)}>
@@ -116,10 +104,27 @@ const UpdatePersonForm = ({ person }) => {
             />
           </div>
         </div>
+        <div>
+          <div className='flex items-center mb-4 mt-10'>
+            <label
+              htmlFor='authorised'
+              className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 mr-10'
+            >
+              Palindrome
+            </label>
+            <input
+              checked={isAuthorised}
+              value={isAuthorised}
+              onChange={() => setIsAuthorised(!isAuthorised)}
+              id='authorised'
+              type='checkbox'
+              className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+            />
+          </div>
+        </div>
         <button onClick={handleCancel}>Cancel</button>
         <button>Save</button>
       </form>
-    </div>
   )
 }
 

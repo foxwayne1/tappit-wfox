@@ -11,12 +11,12 @@ function App() {
   const { data, loading } = useFetch()
   const [page, setPage] = useState(0)
   const [people, setPeople] = useState([])
-  const [setPersonId] = useState(null)
+  const [personId, setPersonId] = useState(null)
 
   useEffect(() => {
     if (loading) return
     setPeople(data[page])
-  }, [loading, page, data])
+  }, [loading, page, data, personId])
 
   const handlePageChange = indexNumber => {
     return setPage(indexNumber)

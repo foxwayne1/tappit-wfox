@@ -13,7 +13,7 @@ const Table = ({
   handlePersonClick,
 }) => {
   return (
-    <>
+    <div>
       <h1>Tappit Table Challenge</h1>
       <div className='flex flex-col'>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
@@ -22,17 +22,17 @@ const Table = ({
               <table className='min-w-full'>
                 <THead />
                 <TBody data={data} handlePersonClick={handlePersonClick} />
-                <Pagination
-                  pageNumber={pageNumber}
-                  pageData={pageData}
-                  onChange={onChange}
-                />
               </table>
+              <Pagination
+                pageNumber={pageNumber}
+                pageData={pageData}
+                onChange={onChange}
+              />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

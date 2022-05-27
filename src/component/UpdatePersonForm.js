@@ -9,16 +9,7 @@ const UpdatePersonForm = ({ person }) => {
   const [isEnabled, setIsEnabled] = useState(person.isEnabled)
   const [isValid, setIsValid] = useState(person.isValid)
   const [isAuthorised, setIsAuthorised] = useState(person.isAuthorised)
-  const [isFavSport, setIsFavSport] = useState(person.favouriteSports)
-  const [listOfSports, setListOfSports] = useState([
-    { name: 'American Football' },
-    { name: 'Baseball' },
-    { name: 'Basketball' },
-  ])
-  const [football, setFootball] = useState(person.favouriteSports.name)
-  console.log(isFavSport)
 
-  console.log(person)
   const handleSubmit = e => {
     e.preventDefault()
     const newData = {
@@ -27,9 +18,9 @@ const UpdatePersonForm = ({ person }) => {
       isEnabled,
       isValid,
       isAuthorised,
-      //   favouriteSports: [{ [name]: football }],
+      favouriteSports: { hello: 'wayne' },
     }
-    console.log(newData)
+    console.log(newData, 'newData')
   }
 
   const handleCancel = () => {
@@ -123,17 +114,6 @@ const UpdatePersonForm = ({ person }) => {
               type='checkbox'
               className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
             />
-          </div>
-        </div>
-        <div>
-          <div className='flex items-center mb-4 mt-10'>
-            <label
-              htmlFor='favSport'
-              className='ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 mr-10'
-            >
-              Favourite Sport
-            </label>
-            {/* // favourite sports go here */}
           </div>
         </div>
         <button onClick={handleCancel}>Cancel</button>

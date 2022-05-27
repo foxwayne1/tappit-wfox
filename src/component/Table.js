@@ -14,7 +14,7 @@ const Table = ({
 }) => {
   return (
     <div>
-      <h1>Tappit Table Challenge</h1>
+      <h1 className='text-3xl text-center p-8'>Tappit Table Challenge</h1>
       <div className='flex flex-col'>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='py-2 inline-block min-w-full sm:px-6 lg:px-8'>
